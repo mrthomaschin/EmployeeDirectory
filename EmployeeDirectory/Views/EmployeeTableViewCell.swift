@@ -10,6 +10,8 @@ import UIKit
 
 class EmployeeTableViewCell : UITableViewCell {
     
+    // MARK: View Cell Property Initialization
+    
     let profileImageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
@@ -49,9 +51,10 @@ class EmployeeTableViewCell : UITableViewCell {
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
 
-        
         return containerView
     }()
+    
+    // MARK: Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -61,6 +64,8 @@ class EmployeeTableViewCell : UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
        super.init(coder: aDecoder)
     }
+    
+    // MARK: UI Setup
     
     func setupViews() {
         self.contentView.addSubview(profileImageView)

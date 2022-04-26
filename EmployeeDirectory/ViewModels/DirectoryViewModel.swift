@@ -6,19 +6,18 @@
 //
 
 import Foundation
-import Combine
 import UIKit
 
 class DirectoryViewModel: NSObject {
     
-    @Published private(set) var employees: [Employee]
+    private(set) var employees: [Employee]
+    private var model: Employees = Employees.init(employees: [])
     
-    var model: Employees = Employees.init(employees: [])
+    // MARK: Init
         
     override init() {
         employees = model.employees
     }
-    
     
     func addEmployee(newEmployee: Employee) {
         employees.append(newEmployee)
@@ -27,15 +26,17 @@ class DirectoryViewModel: NSObject {
     func clearEmployeeList() {
         employees.removeAll()
     }
+    
+    // MARK: Helper Methods
 
     func fetchEmployeeData(url: String, completionHandler: @escaping ([Employee]?, Error?) -> Void) {
         loadJson(urlString: url) { (result) in
             switch result {
-            case .success(let data):
-                self.parseData(jsonData: data, completionHandler: completionHandler)
-            case .failure(let error):
-                print(error)
-                completionHandler(nil, error)
+                case .success(let data):
+                    self.parseData(jsonData: data, completionHandler: completionHandler)
+                case .failure(let error):
+                    print(error)
+                    completionHandler(nil, error)
             }
         }
     }
@@ -60,8 +61,7 @@ class DirectoryViewModel: NSObject {
     
     func parseData(jsonData: Data, completionHandler: @escaping ([Employee]?, Error?) -> Void) {
         do {
-            let decodedData = try JSONDecoder().decode(Employees.self,
-                                                       from: jsonData)
+            let decodedData = try JSONDecoder().decode(Employees.self, from: jsonData)
                         
             completionHandler(decodedData.employees, nil)
         } catch let decodeError {
@@ -69,29 +69,3 @@ class DirectoryViewModel: NSObject {
         }
     }
 }
-
-var imageCache = NSCache<AnyObject, AnyObject>()
-
-extension UIImageView {
-
-    func loadImage(urlString: String) {
-        guard let url = URL(string: urlString) else {
-            return
-        }
-        
-        if let imageFromCache = imageCache.object(forKey: url as AnyObject) as? UIImage {
-            self.image = imageFromCache
-            return
-        }
-        
-        DispatchQueue.main.async { [weak self] in
-            if let imageData = try? Data(contentsOf: url) {
-                if let loadedImage = UIImage(data: imageData) {
-                    self?.image = loadedImage
-                    imageCache.setObject(loadedImage, forKey: url as AnyObject)
-                }
-            }
-        }
-    }
-}
-

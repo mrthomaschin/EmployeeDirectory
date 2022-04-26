@@ -11,10 +11,8 @@ import Combine
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private var subscriptions = Set<AnyCancellable>()
-
     private var viewModel: DirectoryViewModel!
     
-//    var list: [Employee] = []
     var navBar: UINavigationController!
     var tableView: UITableView!
     var tableRefresh: UIRefreshControl!
@@ -24,64 +22,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = DirectoryViewModel.init()
-
-//        setupBindings()
         
         setupTableView()
         setupRefreshControl()
         fetchEmployeeData()
-        setupNavigationBar()
-    
     }
     
-//
-//    func setupBindings() {
-//        subscriptions = [
-//            viewModel.$employees.assign(to: \.list, on: self)
-//        ]
-//    }
-//
-//
-    
-    func setupNavigationBar() {
-        navigationItem.title = "Contacts"
-        self.navigationController?.navigationBar.barTintColor = .white
-        self.navigationController?.navigationBar.isTranslucent = false
-//        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:.black]
-    }
+    // MARK: Setup Views
 
-    func fetchEmployeeData() {
-        viewModel.fetchEmployeeData(url: urlString) {(newEmployeeList, error) in
-            guard error == nil else {
-                print(error ?? "Error fetching employee data")
-                return
-            }
-            
-            DispatchQueue.main.sync {
-                for employee in newEmployeeList! {
-                    self.viewModel.addEmployee(newEmployee: employee)
-                }
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
     func setupRefreshControl() {
         tableRefresh = UIRefreshControl()
-        
         tableRefresh.tintColor = .gray
         tableRefresh.addTarget(self, action: #selector(handleRefreshList(_:)), for: .valueChanged)
         
         self.tableView.refreshControl = tableRefresh
     }
-    
-    @objc func handleRefreshList(_ tableRefresh: UIRefreshControl) {
-            viewModel.clearEmployeeList()
-            fetchEmployeeData()
-            tableRefresh.endRefreshing()
-        }
-    
-    
     
     func setupTableView() {
         tableView = UITableView(frame: view.bounds)
@@ -127,23 +82,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
        return 100
     }
     
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let headerView = UIView.init()
-//        headerView.translatesAutoresizingMaskIntoConstraints = false
-//
-//        let title = UILabel()
-//        title.text = "Employee Directory"
-//        title.textColor = .black
-//        title.font = UIFont.boldSystemFont(ofSize: 18)
-//
-//        headerView.addSubview(title)
-//        title.topAnchor.constraint(equalTo: headerView.topAnchor).isActive = true
-//        title.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -15).isActive = true
-//        title.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
-//        title.centerYAnchor.constraint(equalTo: headerView.centerYAnchor).isActive = true
-//        title.translatesAutoresizingMaskIntoConstraints = false
-//
-//        return headerView
-//    }
+    // MARK: Helper Methods
+    
+    func fetchEmployeeData() {
+        viewModel.fetchEmployeeData(url: urlString) { (newEmployeeList, error) in
+            guard error == nil else {
+                print(error ?? "Error fetching employee data")
+                return
+            }
+            
+            DispatchQueue.main.sync {
+                for employee in newEmployeeList! {
+                    self.viewModel.addEmployee(newEmployee: employee)
+                }
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    @objc func handleRefreshList(_ tableRefresh: UIRefreshControl) {
+        viewModel.clearEmployeeList()
+        fetchEmployeeData()
+        tableRefresh.endRefreshing()
+    }
 }
 

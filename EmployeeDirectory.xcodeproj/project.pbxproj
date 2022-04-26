@@ -20,6 +20,7 @@
 		CD21E7A5281250E500D1AC9C /* EmployeesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD21E7A4281250E500D1AC9C /* EmployeesModel.swift */; };
 		CD21E7A82812513D00D1AC9C /* DirectoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD21E7A72812513D00D1AC9C /* DirectoryViewModel.swift */; };
 		CDA2DE4A2817424000CF88DE /* EmployeeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA2DE492817424000CF88DE /* EmployeeTableViewCell.swift */; };
+		CDA2DE4C2818A72000CF88DE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA2DE4B2818A72000CF88DE /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,8 +57,8 @@
 		CD21E7A228124FE600D1AC9C /* EmployeeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeModel.swift; sourceTree = "<group>"; };
 		CD21E7A4281250E500D1AC9C /* EmployeesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesModel.swift; sourceTree = "<group>"; };
 		CD21E7A72812513D00D1AC9C /* DirectoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryViewModel.swift; sourceTree = "<group>"; };
-		CD21E7AA28128F6000D1AC9C /* TestFile.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TestFile.json; sourceTree = "<group>"; };
 		CDA2DE492817424000CF88DE /* EmployeeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTableViewCell.swift; sourceTree = "<group>"; };
+		CDA2DE4B2818A72000CF88DE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,10 +115,10 @@
 				CD21E77128124FD000D1AC9C /* AppDelegate.swift */,
 				CD21E77328124FD000D1AC9C /* SceneDelegate.swift */,
 				CD21E77728124FD000D1AC9C /* Main.storyboard */,
-				CD21E7AA28128F6000D1AC9C /* TestFile.json */,
 				CD21E77A28124FD200D1AC9C /* Assets.xcassets */,
 				CD21E77C28124FD200D1AC9C /* LaunchScreen.storyboard */,
 				CD21E77F28124FD200D1AC9C /* Info.plist */,
+				CDA2DE4B2818A72000CF88DE /* Extensions.swift */,
 			);
 			path = EmployeeDirectory;
 			sourceTree = "<group>";
@@ -307,6 +308,7 @@
 				CD21E7A82812513D00D1AC9C /* DirectoryViewModel.swift in Sources */,
 				CDA2DE4A2817424000CF88DE /* EmployeeTableViewCell.swift in Sources */,
 				CD21E7A5281250E500D1AC9C /* EmployeesModel.swift in Sources */,
+				CDA2DE4C2818A72000CF88DE /* Extensions.swift in Sources */,
 				CD21E77628124FD000D1AC9C /* ViewController.swift in Sources */,
 				CD21E7A328124FE600D1AC9C /* EmployeeModel.swift in Sources */,
 				CD21E77228124FD000D1AC9C /* AppDelegate.swift in Sources */,
