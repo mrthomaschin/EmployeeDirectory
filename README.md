@@ -36,7 +36,7 @@ I chose to use UIKit as I believe it is a great foundation for iOS engineers to 
 
 The app is based on two models, `Employees` and `Employee`. `Employees` only contains an array of `Employee`s, but I wanted to separate these with the intention of adding on to these models. We could potentially add more properties to each employee, or to the list of employee itself. Therefore, splitting them into two separate classes keeps the hierarchical structure more organized in the long run.
 
-The Views are housed in the `ViewController` and the `EmployeeTableViewCell`. The `ViewController` sets up the navigation bar and the refresh control, as well as trigger the JSON data fetch in the view model. The view controller also conforms to `UITableViewDataSource` and `UITableViewDelegate`, setting up the table view. `EmployeeTableViewCell` contains the constraints necessary to format employee data, structured with Auto Layout.
+The Views are housed in the `ViewController` and the `EmployeeTableViewCell`. The `ViewController` sets up the navigation bar and the refresh control, as well as trigger the JSON data fetch in the view model. The view controller also conforms to `UITableViewDataSource` and `UITableViewDelegate`, setting up the table view. `EmployeeTableViewCell` contains the constraints necessary to format employee data, structured with Auto Layout. Tapping on the view cell will print the employee's name and team in the console, as a placeholder for future feature implementations.
 
 ### Asynchronous Programming
 
@@ -88,6 +88,8 @@ I spent around 7-8 hours total on this project throughout the week.
 Most importantly, I would go further with organization by conforming classes to protocols. If I were to add more similar components, protocols would come in handy for better reusability and class separation. To add on, I would also remove the table view and refresh components out of the view controller and initialize them in their own classes. I'm a firm believer in organization and scalability!
 
 A feature add-on I would like to implement is to add a drop down in the navigation bar that provides the options to sort via name, team, email, etc. Having two sort buttons in the navigation bar is definitely not ideal.
+
+Lastly, I would have liked to add dark mode support as well, for the extra brownie points.
 
 ## What do you think is the weakest part of your project?
 
