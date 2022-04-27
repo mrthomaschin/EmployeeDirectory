@@ -21,6 +21,7 @@
 		CD21E7A82812513D00D1AC9C /* DirectoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD21E7A72812513D00D1AC9C /* DirectoryViewModel.swift */; };
 		CDA2DE4A2817424000CF88DE /* EmployeeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA2DE492817424000CF88DE /* EmployeeTableViewCell.swift */; };
 		CDA2DE4C2818A72000CF88DE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA2DE4B2818A72000CF88DE /* Extensions.swift */; };
+		CDA2DE522819DE9300CF88DE /* icons8-square-50.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA2DE512819DE9300CF88DE /* icons8-square-50.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		CD21E7A72812513D00D1AC9C /* DirectoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryViewModel.swift; sourceTree = "<group>"; };
 		CDA2DE492817424000CF88DE /* EmployeeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTableViewCell.swift; sourceTree = "<group>"; };
 		CDA2DE4B2818A72000CF88DE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		CDA2DE512819DE9300CF88DE /* icons8-square-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-square-50.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				CD21E77A28124FD200D1AC9C /* Assets.xcassets */,
 				CD21E77C28124FD200D1AC9C /* LaunchScreen.storyboard */,
 				CD21E77F28124FD200D1AC9C /* Info.plist */,
+				CDA2DE512819DE9300CF88DE /* icons8-square-50.png */,
 				CDA2DE4B2818A72000CF88DE /* Extensions.swift */,
 			);
 			path = EmployeeDirectory;
@@ -281,6 +284,7 @@
 				CD21E77E28124FD200D1AC9C /* LaunchScreen.storyboard in Resources */,
 				CD21E77B28124FD200D1AC9C /* Assets.xcassets in Resources */,
 				CD21E77928124FD000D1AC9C /* Main.storyboard in Resources */,
+				CDA2DE522819DE9300CF88DE /* icons8-square-50.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
