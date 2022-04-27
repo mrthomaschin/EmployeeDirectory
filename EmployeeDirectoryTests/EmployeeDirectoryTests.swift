@@ -19,6 +19,7 @@ class EmployeeDirectoryTests: XCTestCase {
     }
     
     func testFetchEmployeeList() {
+        
         // GIVEN
         let populatedListUrl = "https://s3.amazonaws.com/sq-mobile-interview/employees.json"
         let expectedListSize = 11
@@ -43,6 +44,7 @@ class EmployeeDirectoryTests: XCTestCase {
     }
     
     func testFetchEmployeeListEmpty() {
+        
         // GIVEN
         let emptyListUrl = "https://s3.amazonaws.com/sq-mobile-interview/employees_empty.json"
         let expectation = self.expectation(description: "Fetch employee list")
@@ -65,6 +67,7 @@ class EmployeeDirectoryTests: XCTestCase {
     }
     
     func testFetchEmployeeListMalformed() {
+        
         // GIVEN
         let malformedListUrl = "https://s3.amazonaws.com/sq-mobile-interview/employees_malformed.json"
         let expectation = self.expectation(description: "Fetch employee list")
@@ -88,6 +91,7 @@ class EmployeeDirectoryTests: XCTestCase {
     }
     
     func testFetchEmployeeListInvalidUrl() {
+        
         // GIVEN
         let invalidListUrl = "https://hello.there"
         let expectation = self.expectation(description: "Fetch employee list")

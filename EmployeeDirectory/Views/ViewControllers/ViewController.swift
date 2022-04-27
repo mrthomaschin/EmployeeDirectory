@@ -15,6 +15,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var tableView: UITableView!
     var tableRefresh: UIRefreshControl!
+    var navBar: UINavigationBar!
     
     let employeeListUrl = "https://s3.amazonaws.com/sq-mobile-interview/employees.json"
     
@@ -22,12 +23,34 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         
         setViewModel()
+        setupNavigationBar()
         setupTableView()
         setupRefreshControl()
         fetchEmployeeData(urlString: employeeListUrl)
     }
     
     // MARK: Setup Views
+    
+    func setupNavigationBar() {
+        navBar = UINavigationBar()
+        view.addSubview(navBar)
+
+        navBar.translatesAutoresizingMaskIntoConstraints = false
+        navBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        navBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+        navBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
+
+        let navItem = UINavigationItem(title: "Employee Directory")
+        let sortByNameItem = UIBarButtonItem(title: "Name", style: .done, target: nil, action: #selector(handleSortByName))
+        let sortByTeamItem = UIBarButtonItem(title: "Team", style: .done, target: nil, action: #selector(handleSortByTeam))
+
+        navItem.leftBarButtonItem = sortByNameItem
+        navItem.rightBarButtonItem = sortByTeamItem
+
+        navBar.setItems([navItem], animated: false)
+        
+        navigationItem.title = "Employee List"
+    }
 
     func setupRefreshControl() {
         tableRefresh = UIRefreshControl()
@@ -42,11 +65,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         view.addSubview(tableView)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: navBar.bottomAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
-        tableView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
         tableView.register(EmployeeTableViewCell.self,
                            forCellReuseIdentifier: "EmployeeTableViewCell")
@@ -89,6 +111,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         viewModel = DirectoryViewModel.init()
     }
     
+    func replaceEmployeeListWithNewList(newEmployeeList: [Employee]) {
+        viewModel.clearEmployeeList()
+
+        for employee in newEmployeeList {
+            self.viewModel.addEmployee(newEmployee: employee)
+        }
+        
+        self.tableView.reloadData()
+    }
+    
     func fetchEmployeeData(urlString: String) {
         viewModel.fetchEmployeeData(url: urlString) { (newEmployeeList, error) in
             guard error == nil else {
@@ -97,10 +129,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             
             DispatchQueue.main.sync {
-                for employee in newEmployeeList! {
-                    self.viewModel.addEmployee(newEmployee: employee)
-                }
-                self.tableView.reloadData()
+                self.replaceEmployeeListWithNewList(newEmployeeList: newEmployeeList!)
             }
         }
     }
@@ -109,6 +138,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         viewModel.clearEmployeeList()
         fetchEmployeeData(urlString: employeeListUrl)
         tableRefresh.endRefreshing()
+    }
+    
+    @objc func handleSortByName() {
+        let newSortedEmployeeList: [Employee] = self.viewModel.employees.sorted() { $0.fullName < $1.fullName }
+        replaceEmployeeListWithNewList(newEmployeeList: newSortedEmployeeList)
+
+    }
+    
+    @objc func handleSortByTeam() {
+        let newSortedEmployeeList: [Employee] = self.viewModel.employees.sorted() { $0.teamName < $1.teamName }
+        replaceEmployeeListWithNewList(newEmployeeList: newSortedEmployeeList)
     }
 }
 
