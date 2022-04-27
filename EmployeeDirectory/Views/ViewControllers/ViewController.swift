@@ -98,7 +98,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print(viewModel.employees[indexPath.row])
+        print("\(indexPath.row): \(viewModel.employees[indexPath.row].fullName), \(viewModel.employees[indexPath.row].teamName)")
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
