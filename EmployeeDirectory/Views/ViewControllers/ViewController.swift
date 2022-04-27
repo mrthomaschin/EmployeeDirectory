@@ -6,11 +6,9 @@
 //
 
 import UIKit
-import Combine
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    private var subscriptions = Set<AnyCancellable>()
     private(set) var viewModel: DirectoryViewModel!
     
     var tableView: UITableView!
