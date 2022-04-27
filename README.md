@@ -38,6 +38,10 @@ The app is based on two models, `Employees` and `Employee`. `Employees` only con
 
 The Views are housed in the `ViewController` and the `EmployeeTableViewCell`. The `ViewController` sets up the navigation bar and the refresh control, as well as trigger the JSON data fetch in the view model. The view controller also conforms to `UITableViewDataSource` and `UITableViewDelegate`, setting up the table view. `EmployeeTableViewCell` contains the constraints necessary to format employee data, structured with Auto Layout. Tapping on the view cell will print the employee's name and team in the console, as a placeholder for future feature implementations.
 
+This is a high-level UML diagram of the MVVM archiecture.
+
+<img width="1000" alt="Screen Shot 2022-04-27 at 2 26 03 PM" src="https://user-images.githubusercontent.com/20309397/165633938-c9aee529-e11c-470a-ad34-09698e87dd1f.png">
+
 ### Asynchronous Programming
 
 One of my high-priority focuses was on asynchronously fetch data from the JSON endpoint and rendering it to the table view while making the user experience seamless and smooth. I was able to accomplish this by passing a completion block that updates and re-renders the tableview from the view controller to the fetching methods. Therefore, once data is returned, it will display to the user.
