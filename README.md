@@ -18,21 +18,21 @@
 
 ### Overview
 
-This application has an MVVM archiecture. I chose this archiecture with the focus on modularity and longevity. In an event where I would continue to expand on the app which would require more dependent classes, MVVM facilitates easier organization and focuses on the independence of modules, only knowing what is necessary to know.
+This application is structured with an MVVM archiecture. I chose this archiecture with the focus on modularity and longevity. In the event where I would continue to expand on the app which would require more dependent classes, MVVM facilitates easier organization and focuses on the independence of modules, only knowing what is necessary to know.
 
-MVVM is also a great architecture for unit testing, keeping components modular to isolate them when testing.
+MVVM is also a great architecture for unit testing, keeping components modular to isolate them and making code coverage easier.
 
 ### Framework & Interface Builder Choice
 
 One of the major design decisions for this app was framework choice. When I first began as an iOS engineer, I learned to structure views programmatically in Objective-C with UIKit. After learning about the capabilities of Storyboard and SwiftUI, it was tempting to move to those frameworks due to their convenience.
 
-But Storyboard, especially in an industry setting, can be a huge pain and can hide a lot of technical detail when collaberating with other engineers.
+But Storyboard, especially in an industry setting, can be a huge pain and can hide a lot of technical detail when collaborating with other engineers.
 
-I chose to use UIKit as I believe it is a great foundation for iOS engineers to understand the ebbs and flows of an iOS application. Solidifying my knowledge of UIKit will help me create better quality products in the future, as SwiftUI continues to grow and become the norm.
+I chose to use UIKit as I believe it is a great foundation for iOS engineers to understand the ebbs and flows of an iOS application. Solidifying my knowledge of UIKit and understanding iOS application architecture will help me create better quality products in the future, as SwiftUI continues to grow and become the norm.
 
 ### Hierarchy Breakdown
 
-`DirectoryViewModel` contains all of the business logic, specifically modifying the employees list and calling the JSON endpoint to receive the list of employees to display.
+`DirectoryViewModel` contains all the business logic, specifically modifying the employees list and calling the JSON endpoint to receive the list of employees to display.
 
 The app is based on two models, `Employees` and `Employee`. `Employees` only contains an array of `Employee`s, but I wanted to separate these with the intention of adding on to these models. We could potentially add more properties to each employee, or to the list of employee itself. Therefore, splitting them into two separate classes keeps the hierarchical structure more organized in the long run.
 
@@ -40,7 +40,7 @@ The Views are housed in the `ViewController` and the `EmployeeTableViewCell`. Th
 
 ### Asynchronous Programming
 
-One of my high-priority focuses was on asynchronously fetch data from the JSON endpoint and rendering it to the table view while making the user experience seemless and smooth. I was able to accomplish this by passing a completion block that updates and re-renders the tableview from the view controller to the fetching methods. Therefore, once data is returned the table view will re-render.
+One of my high-priority focuses was on asynchronously fetch data from the JSON endpoint and rendering it to the table view while making the user experience seamless and smooth. I was able to accomplish this by passing a completion block that updates and re-renders the tableview from the view controller to the fetching methods. Therefore, once data is returned, it will display to the user.
 
 ```
 func fetchEmployeeData(urlString: String) {
@@ -85,13 +85,13 @@ I spent around 7-8 hours total on this project throughout the week.
 
 ## Did you make any trade-offs for this project? What would you have done differently with more time?
 
-Most importantly, I would go further with organization by conforming classes to protocols. If I were to add more similar components, protocols would come in handy for better resusability and class separation. To add on, I would also remove the table view and refresh components out of the view controller and initialize them in their own classes. I'm a firm believer in organization and scalability!
+Most importantly, I would go further with organization by conforming classes to protocols. If I were to add more similar components, protocols would come in handy for better reusability and class separation. To add on, I would also remove the table view and refresh components out of the view controller and initialize them in their own classes. I'm a firm believer in organization and scalability!
 
 A feature add-on I would like to implement is to add a drop down in the navigation bar that provides the options to sort via name, team, email, etc. Having two sort buttons in the navigation bar is definitely not ideal.
 
 ## What do you think is the weakest part of your project?
 
-I think the weakest part of my project is the separation of components. As mentioned about I definitely could organize component initialization and methods into their own defined classes. That way, classes like `ViewController` can be easier to read and contain less lines of code.
+I think the weakest part of my project is the separation of components. As mentioned above I definitely could organize component initialization and methods into their own defined classes. That way, classes like `ViewController` can be easier to read and contain less lines of code.
 
 ## Did you copy any code or dependencies? Please make sure to attribute them here!
 
