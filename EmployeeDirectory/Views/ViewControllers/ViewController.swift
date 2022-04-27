@@ -11,21 +11,20 @@ import Combine
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private var subscriptions = Set<AnyCancellable>()
-    private var viewModel: DirectoryViewModel!
+    private(set) var viewModel: DirectoryViewModel!
     
-    var navBar: UINavigationController!
     var tableView: UITableView!
     var tableRefresh: UIRefreshControl!
     
-    let urlString = "https://s3.amazonaws.com/sq-mobile-interview/employees.json"
+    let employeeListUrl = "https://s3.amazonaws.com/sq-mobile-interview/employees.json"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = DirectoryViewModel.init()
         
+        setViewModel()
         setupTableView()
         setupRefreshControl()
-        fetchEmployeeData()
+        fetchEmployeeData(urlString: employeeListUrl)
     }
     
     // MARK: Setup Views
@@ -39,13 +38,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func setupTableView() {
-        tableView = UITableView(frame: view.bounds)
+        tableView = UITableView()
         view.addSubview(tableView)
         
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
+        tableView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
         tableView.register(EmployeeTableViewCell.self,
                            forCellReuseIdentifier: "EmployeeTableViewCell")
@@ -84,10 +85,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // MARK: Helper Methods
     
-    func fetchEmployeeData() {
+    func setViewModel() {
+        viewModel = DirectoryViewModel.init()
+    }
+    
+    func fetchEmployeeData(urlString: String) {
         viewModel.fetchEmployeeData(url: urlString) { (newEmployeeList, error) in
             guard error == nil else {
-                print(error ?? "Error fetching employee data")
+                print(error ?? "[ViewController] Error fetching employee data")
                 return
             }
             
@@ -102,7 +107,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @objc func handleRefreshList(_ tableRefresh: UIRefreshControl) {
         viewModel.clearEmployeeList()
-        fetchEmployeeData()
+        fetchEmployeeData(urlString: employeeListUrl)
         tableRefresh.endRefreshing()
     }
 }

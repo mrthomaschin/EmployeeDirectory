@@ -43,6 +43,7 @@ class DirectoryViewModel: NSObject {
     
     func loadJson(urlString: String, completionHandler: @escaping (Result<Data, Error>) -> Void) {
         guard let url = URL(string: urlString) else {
+            print("[DirectoryViewModel] Error: invalid url")
             return
         }
         
@@ -65,6 +66,7 @@ class DirectoryViewModel: NSObject {
                         
             completionHandler(decodedData.employees, nil)
         } catch let decodeError {
+            print("[DirectoryViewModel] Error: Cannot parse data")
             completionHandler(nil, decodeError)
         }
     }
