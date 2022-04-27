@@ -40,7 +40,7 @@ The Views are housed in the `ViewController` and the `EmployeeTableViewCell`. Th
 
 This is a high-level UML diagram of the MVVM archiecture.
 
-<img width="1000" alt="Screen Shot 2022-04-27 at 2 26 03 PM" src="https://user-images.githubusercontent.com/20309397/165633938-c9aee529-e11c-470a-ad34-09698e87dd1f.png">
+<img width="1000" alt="Screen Shot 2022-04-27 at 2 33 35 PM" src="https://user-images.githubusercontent.com/20309397/165634835-34be387c-f5c3-4ded-966d-71d05f2418af.png">
 
 ### Asynchronous Programming
 
